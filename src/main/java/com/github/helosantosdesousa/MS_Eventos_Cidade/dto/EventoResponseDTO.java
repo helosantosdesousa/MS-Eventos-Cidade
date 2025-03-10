@@ -13,15 +13,11 @@ public record EventoResponseDTO(
         String url
 ) {
 
-    public static List<EventoResponseDTO> createMock(){
-        //data para testes
-        LocalDate dataTeste = LocalDate.of(2025, 3, 15);
-
-        return List.of(
-                new EventoResponseDTO(1L,"Night Run", dataTeste, "https://nighrtun.com"),
-                new EventoResponseDTO(2L,"Meia maratona", dataTeste, "https://meiamaratona.com"),
-                new EventoResponseDTO(3L,"Corrida feminina", dataTeste, "https://corridafeminina.com")
-        );
+    public EventoResponseDTO(Evento entity){
+        this(entity.getId(),
+                entity.getNome(),
+                entity.getData(),
+                entity.getUrl());
     }
 
 }

@@ -1,8 +1,15 @@
 package com.github.helosantosdesousa.MS_Eventos_Cidade.entities;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "tb_evento")
+
 public class Evento {
+
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private LocalDate data;
