@@ -46,7 +46,8 @@ public class EventoService {
         entity.setUrl(requestDTO.url());
     }
 
-    @Transactional EventoResponseDTO update(Long id, EventoRequestDTO requestDTO){
+    @Transactional
+    public EventoResponseDTO update(Long id, EventoRequestDTO requestDTO){
         try{
             Evento entity = repository.getReferenceById(id);
             toEntity(requestDTO, entity);
@@ -57,6 +58,11 @@ public class EventoService {
         }
     }
 
-
-
-}
+    @Transactional
+        public void delete(Long id){
+            if(!repository.existsById(id)){
+                throw new EntityNotFoundException("Recurso não encontrado.Id: " + id);
+            }
+            repository.deleteById(id);
+        }
+    }
