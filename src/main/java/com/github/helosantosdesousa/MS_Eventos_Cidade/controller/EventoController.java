@@ -3,6 +3,7 @@ package com.github.helosantosdesousa.MS_Eventos_Cidade.controller;
 import com.github.helosantosdesousa.MS_Eventos_Cidade.dto.EventoRequestDTO;
 import com.github.helosantosdesousa.MS_Eventos_Cidade.dto.EventoResponseDTO;
 import com.github.helosantosdesousa.MS_Eventos_Cidade.service.EventoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class EventoController {
     }
 
     @PostMapping
-    public ResponseEntity<EventoResponseDTO> insert(@RequestBody EventoRequestDTO requestDTO){
+    public ResponseEntity<EventoResponseDTO> insert(@Valid @RequestBody EventoRequestDTO requestDTO){
         EventoResponseDTO dto = service.insert(requestDTO);
 
         URI uri = ServletUriComponentsBuilder
@@ -46,7 +47,7 @@ public class EventoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EventoResponseDTO> update(@PathVariable Long id, @RequestBody EventoRequestDTO requestDTO){
+    public ResponseEntity<EventoResponseDTO> update(@PathVariable Long id, @Valid @RequestBody EventoRequestDTO requestDTO){
         EventoResponseDTO dto = service.update(id,requestDTO);
         return ResponseEntity.ok(dto);
     }
