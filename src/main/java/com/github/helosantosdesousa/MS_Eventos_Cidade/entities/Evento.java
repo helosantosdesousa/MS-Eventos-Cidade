@@ -3,6 +3,7 @@ package com.github.helosantosdesousa.MS_Eventos_Cidade.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_evento")
@@ -15,15 +16,20 @@ public class Evento {
     private LocalDate data;
     private String url;
 
+    @ManyToOne
+    @JoinColumn(name = "cidade_id", nullable = false)
+    private Cidade cidade;
+
     public Evento() {
 
     }
 
-    public Evento(Long id, String nome, LocalDate data, String url) {
+    public Evento(Long id, String nome, LocalDate data, String url, Cidade cidade) {
         this.id = id;
         this.nome = nome;
         this.data = data;
         this.url = url;
+        this.cidade = cidade;
     }
 
     public Long getId() {
@@ -57,4 +63,25 @@ public class Evento {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Evento evento = (Evento) o;
+        return Objects.equals(getId(), cidade.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
 }
+

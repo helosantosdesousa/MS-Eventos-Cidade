@@ -1,20 +1,33 @@
 package com.github.helosantosdesousa.MS_Eventos_Cidade.entities;
 
+import com.github.helosantosdesousa.MS_Eventos_Cidade.dto.CidadeDTO;
+import com.github.helosantosdesousa.MS_Eventos_Cidade.exceptions.ResourceNotFoundException;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(of ="id")
+
+@Entity
+@Table(name ="tb_cidade")
 public class Cidade {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String estado;
     private String uf;
 
-    public Cidade() {
-    }
-
-    public Cidade(Long id, String nome, String estado, String uf) {
-        this.id = id;
-        this.nome = nome;
-        this.estado = estado;
-        this.uf = uf;
-    }
+    @OneToMany(mappedBy = "cidade")
+    private List<Evento> eventos = new ArrayList<>();
 
     public Long getId() {
         return id;

@@ -8,14 +8,16 @@ public record EventoResponseDTO(
         Long id,
         String nome,
         LocalDate data,
-        String url
+        String url,
+        CidadeDTO cidade
 ) {
 
-    public EventoResponseDTO(Evento entity){
+    public EventoResponseDTO(Evento entity) {
         this(entity.getId(),
                 entity.getNome(),
                 entity.getData(),
-                entity.getUrl());
+                entity.getUrl(),
+                new CidadeDTO(entity.getCidade()));
     }
 
 }

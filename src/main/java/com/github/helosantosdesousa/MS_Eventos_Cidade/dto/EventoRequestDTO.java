@@ -17,8 +17,11 @@ public record EventoRequestDTO(
         LocalDate data,
 
         @NotBlank(message = "Campo requerido!")
-        @Size(min = 5, max = 100, message = "a url deve ter de 5 a 100 caracteres")
-        String url
+        @Size(min = 5, max = 255, message = "a url deve ter de 5 a 255 caracteres")
+        String url,
+
+        @NotNull(message = "Campo requerido")
+        CidadeDTO cidade
 ) {
 
 }

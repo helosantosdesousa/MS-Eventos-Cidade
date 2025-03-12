@@ -1,8 +1,8 @@
 package com.github.helosantosdesousa.MS_Eventos_Cidade.controller.handlers;
 
 import com.github.helosantosdesousa.MS_Eventos_Cidade.controller.handlers.dto.CustomErrorDTO;
-import com.github.helosantosdesousa.MS_Eventos_Cidade.controller.handlers.dto.FieldMessageDTO;
 import com.github.helosantosdesousa.MS_Eventos_Cidade.controller.handlers.dto.ValidationErrorDTO;
+import com.github.helosantosdesousa.MS_Eventos_Cidade.exceptions.DatabaseException;
 import com.github.helosantosdesousa.MS_Eventos_Cidade.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -32,6 +32,15 @@ public class ControllerExceptionHandler {
         for (FieldError fieldError : e.getBindingResult().getFieldErrors()){
             err.addError(fieldError.getField(), fieldError.getDefaultMessage());
         }
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<CustomErrorDTO> handleDatabase(DatabaseException e,
+                                                         HttpServletRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        CustomErrorDTO err = new CustomErrorDTO(Instant.now(), status.value(),
+                e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }
