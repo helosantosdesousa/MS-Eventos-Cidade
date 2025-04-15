@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-
 function handleCadastrarEvento() {
   const nome = document.getElementById('evento-nome').value;
   const data = document.getElementById('evento-data').value; 
@@ -46,8 +44,6 @@ function handleCadastrarEvento() {
   }
 }
 
-
-
 function procurarEventos() {
   buscarEventos().then((eventos) => {
     const listaEventos = document.getElementById('lista-eventos');
@@ -61,9 +57,12 @@ function procurarEventos() {
       li.textContent = `${evento.nome} - ${cidadeNome}`;
       listaEventos.appendChild(li);
     });
+
+    // Alterna a visibilidade da lista
+    const listaEventosContainer = document.getElementById('lista-eventos');
+    listaEventosContainer.classList.toggle('d-none');
   });
 }
-
 
 function procurarCidades() {
   buscarCidades().then((cidades) => {
@@ -75,9 +74,12 @@ function procurarCidades() {
       li.textContent = `${cidade.nome} - ${cidade.uf}`;
       listaCidades.appendChild(li);
     });
+
+    // Alterna a visibilidade da lista
+    const listaCidadesContainer = document.getElementById('lista-cidades');
+    listaCidadesContainer.classList.toggle('d-none');
   });
 }
-
 
 function handleExcluir() {
   const nome = document.getElementById('id-excluir').value.trim();
@@ -103,11 +105,7 @@ function handleExcluir() {
   });
 }
 
-  
-  
-  document.getElementById('btn-excluir').addEventListener('click', handleExcluir);
-  
-
+document.getElementById('btn-excluir').addEventListener('click', handleExcluir);
 document.getElementById('btn-cadastrar').addEventListener('click', handleCadastrarEvento);
 document.getElementById('btn-procurar-eventos').addEventListener('click', procurarEventos);
 document.getElementById('btn-procurar-cidades').addEventListener('click', procurarCidades);
