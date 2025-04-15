@@ -17,6 +17,12 @@ public class CidadeController {
     @Autowired
     private CidadeService service;
 
+    @GetMapping
+    public ResponseEntity<List<CidadeDTO>> findAll() {
+        List<CidadeDTO> cidades = service.findAll();
+        return ResponseEntity.ok(cidades);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CidadeDTO> findById(@PathVariable Long id){
         CidadeDTO dto = service.findById(id);
