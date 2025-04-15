@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API de Eventos</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="./script/main.js"></script>
+</head>
+<body>
+  <h1>Cadastrar Evento</h1>
+
+  <input type="text" id="evento-nome" placeholder="Nome do Evento" />
+
+  <input type="date" id="evento-data" placeholder="Data do Evento" />
+
+  <input type="url" id="evento-url" placeholder="URL do Evento" />
+
+  <!-- Select com cidades (será populado via JavaScript) -->
+  <select id="evento-cidade">
+    <option value="">Selecione uma cidade</option>
+    <!-- opções serão adicionadas dinamicamente -->
+  </select>
+
+  <button id="btn-cadastrar">Cadastrar Evento</button>
+
+  <h1>Procurar Eventos</h1>
+  <button id="btn-procurar-eventos">Mostrar Eventos</button>
+  <ul id="lista-eventos"></ul>
+
+  <h1>Procurar Cidades</h1>
+  <button id="btn-procurar-cidades">Mostrar Cidades</button>
+  <ul id="lista-cidades"></ul>
+
+  <h1>Excluir Evento ou Cidade</h1>
+  <input type="text" id="id-excluir" placeholder="ID para Excluir" />
+  <select id="tipo-excluir">
+    <option value="evento">Evento</option>
+    <option value="cidade">Cidade</option>
+  </select>
+  <button id="btn-excluir">Excluir</button>
+</body>
+</html>
