@@ -1,5 +1,6 @@
 # 📅 Microsserviço de Gerenciamento de Eventos
-API REST desenvolvida em Java com Spring Boot, que permite gerenciar eventos e cidades com operações CRUD completas, validações personalizadas e tratamento de exceções. Projeto desenvolvido como parte do Checkpoint 1 da disciplina Microservices and Web Engineering — 1º semestre de 2025.
+Este projeto é uma aplicação web simples para cadastrar eventos associados a cidades, listar eventos e cidades, e excluir registros com base no nome. Ele utiliza JavaScript (frontend) e uma API backend para fornecer as funcionalidades principais.
+
 
 ## 🚀 Tecnologias Utilizadas
 - Java 17+
@@ -13,8 +14,45 @@ API REST desenvolvida em Java com Spring Boot, que permite gerenciar eventos e c
   
 ## 📂 Estrutura do Projeto
 
-![image](https://github.com/user-attachments/assets/318f4d65-8279-4022-bad5-9c4ca8973d09)
-      
+/MS-Eventos_Cidade
+├── front/                      # Front-end estático
+│   ├── index.html
+│   ├── style.css
+│   ├── main.js
+│   └── api.js
+│
+├── src/main/java/
+│   └── com.github.helosantosdesousa.ms_eventos_cidade/
+│       ├── controller/
+│       │   └── handlers/       # Controllers REST
+│       │       ├── CidadeController
+│       │       └── EventoController
+│       │
+│       ├── dto/                # Objetos de transferência de dados
+│       │   ├── CidadeDTO
+│       │   ├── EventoRequestDTO
+│       │   └── EventoResponseDTO
+│       │
+│       ├── entities/           # Entidades JPA
+│       │   ├── Cidade
+│       │   └── Evento
+│       │
+│       ├── exceptions/         # Tratamento de exceções
+│       │   ├── DatabaseException
+│       │   └── ResourceNotFoundException
+│       │
+│       ├── repositories/       # Repositórios Spring Data JPA
+│       │   ├── CidadeRepository
+│       │   └── EventoRepository
+│       │
+│       ├── service/            # Lógica de negócio
+│       │   ├── CidadeService
+│       │   └── EventoService
+│       │
+│       └── MsEventosCidadeApplication.java  # Classe principal
+│
+└── 
+    
 ## ⚙️ Funcionalidades
 - 🔍 Listagem de Eventos e Cidades (GET /eventos, GET /cidades)
 - 📄 Consultas por ID (GET /eventos/{id}, GET /cidades/{id})
